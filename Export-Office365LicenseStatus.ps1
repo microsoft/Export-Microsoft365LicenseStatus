@@ -2,13 +2,65 @@
 # Licensed under the MIT license. See LICENSE.txt file in the project root for full license information. 
 
 # Version information
-# v0.2
+# v0.3
+
+<#
+.SYNOPSIS
+This is a sample script that exports license status information of Office 365 users.
+
+.DESCRIPTION
+This script runs Get-MsolUser cmdlet to collect license information.
+The output of this script is PSCustomObject or a CSV file.
+The Azure AD Module (MSOnline) must be installed on your computer.
+
+.PARAMETER UserPrincipalName
+The UserPrincipalName of the user to be exported.
+
+.PARAMETER All
+When exporting all user's information, set this parameter to True.
+
+.PARAMETER CsvOutputPath
+The path for output file.
+Use this parameter only when exporting as a CSV file.
+
+.PARAMETER ExportNoLicenseUser
+Switch to include non license assigned user's information.
+
+.PARAMETER Force
+Switch to force the output file to be overwritten when the file is already existed.
+ 
+.EXAMPLE
+Export all users' information
+
+.\Export-Office365LicenseStatus.ps1 -All $true
+
+.EXAMPLE
+Export the specific user's information.
+
+.\Export-Office365LicenseStatus.ps1 -UserPrincipalName User01@contoso.onmicrosoft.com
+ 
+.EXAMPLE
+Export as a CSV file.
+
+.\Export-Office365LicenseStatus.ps1 -UserPrincipalName User01@contoso.onmicrosoft.com -CsvOutputPath C:\temp\exporttest.csv
+
+.NOTES
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+.LINK
+https://github.com/Microsoft/Export-Office365LicenseStatus
+#>
 
 [CmdletBinding()]
 Param(
     [Parameter(ParameterSetName = "UserCsv", Mandatory = $true, ValueFromPipeline = $True)]
     [Parameter(ParameterSetName = "UserPSObject", Mandatory = $true, ValueFromPipeline = $True)]
     [ValidateNotNullOrEmpty()]
+    [string]
     $UserPrincipalName,
 
     [Parameter(ParameterSetName = "AllCsv", Mandatory = $true, ValueFromPipeline = $False)]
@@ -19,6 +71,7 @@ Param(
     [Parameter(ParameterSetName = "UserCsv", Mandatory = $true, ValueFromPipeline = $False)]
     [Parameter(ParameterSetName = "AllCsv", Mandatory = $true, ValueFromPipeline = $False)]
     [ValidateNotNullOrEmpty()]
+    [string]
     $CsvOutputPath,
 
     [Parameter(ValueFromPipeline = $False)]
