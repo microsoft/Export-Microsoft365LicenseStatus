@@ -1,6 +1,9 @@
 # Copyright (c) Microsoft. All rights reserved. 
 # Licensed under the MIT license. See LICENSE.txt file in the project root for full license information. 
 
+# Version information
+# v0.2
+
 [CmdletBinding()]
 Param(
     [Parameter(ParameterSetName = "UserCsv", Mandatory = $true, ValueFromPipeline = $True)]
@@ -58,7 +61,16 @@ Begin {
 
         Write-Verbose "Enter : CreateOutput"
 
-        $Result = [PSCustomObject]@{UserPrincipalName = $User.UserPrincipalName; AccountSkuId = $AccountSkuId; ServiceName = $ServiceName; ProvisioningStatus = $ProvisioningStatus }
+        $Result = [PSCustomObject]@{
+            UserPrincipalName = $User.UserPrincipalName;
+            DisplayName = $User.DisplayName;
+            Department = $User.Department;
+            UsageLocation = $User.UsageLocation;
+            AccountSkuId = $AccountSkuId;
+            ServiceName = $ServiceName;
+            ProvisioningStatus = $ProvisioningStatus
+        }
+
         Write-Verbose "  UserPrincipalName = $($User.UserPrincipalName); AccountSkuId = $AccountSkuId; ServiceName = $ServiceName; ProvisioningStatus = $ProvisioningStatus"
 
         if ($CSV) {
