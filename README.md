@@ -30,7 +30,7 @@ Download Export-Office365LicenseStatus from [release](https://github.com/Microso
 
 ## Prerequisites
 
-You have to install the Azure AD Module (OSOnline) on your computer. Please refer to [this](https://docs.microsoft.com/en-us/powershell/module/msonline/?view=azureadps-1.0) page for more information.
+You have to install the Azure AD Module (MSOnline) on your computer. Please refer to [this](https://docs.microsoft.com/en-us/powershell/module/msonline/?view=azureadps-1.0) page for more information.
 
 
 ## Syntax
