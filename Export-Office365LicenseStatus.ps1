@@ -2,7 +2,7 @@
 # Licensed under the MIT license. See LICENSE.txt file in the project root for full license information. 
 
 # Version information
-# v0.3
+# v1.0
 
 <#
 .SYNOPSIS
