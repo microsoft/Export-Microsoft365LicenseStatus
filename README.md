@@ -1,5 +1,7 @@
 # Export-Office365LicenseStatus
 
+[日本語版 README はこちら](https://github.com/Microsoft/Export-Office365LicenseStatus/tree/master/ja-jp)
+
 You can export license status information of Office 365 users.
 
 ## Download option
