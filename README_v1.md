@@ -4,7 +4,7 @@
 
 You can export license status information of Office 365 users.
 
-> :exclamation: If you are looking for Export-Microsoft65LicenseStatus (Microsoft Graph version), please see [here](READMEs.md)
+> :exclamation: If you are looking for Export-Microsoft65LicenseStatus (Microsoft Graph version), please see [here](README.md)
 
 ## Download option
 
