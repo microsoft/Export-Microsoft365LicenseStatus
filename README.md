@@ -1,49 +1,52 @@
-# Export-Office365LicenseStatus
+# Export-Microsoft365LicenseStatus
 
-[日本語版 README はこちら](https://github.com/Microsoft/Export-Office365LicenseStatus/tree/master/ja-jp)
+[日本語版 README はこちら](https://github.com/microsoft/Export-Microsoft365LicenseStatus/tree/master/ja-jp)
 
-You can export license status information of Office 365 users.
+You can export license status information of Microsoft 365 users.
+
+> :exclamation: If you are looking for Export-Office365LicenseStatus (MSOL version), please see [here](README_v1.md)
 
 ## Download option
 
-Download Export-Office365LicenseStatus from [release](https://github.com/Microsoft/Export-Office365LicenseStatus/releases) page.
-
-## Usage
-
-1. Download Export-Office365LicenseStatus and save on your computer.
-2. Start Windows PowerShell and go to the folder where you saved the file.
-3. If you want to export all users' information, run the following command.
-
-  ~~~powershell
-.\Export-Office365LicenseStatus.ps1 -All $true
-  ~~~
-
-4. If you want to export the specific user's information, run the following command.
-
-  ~~~powershell
-.\Export-Office365LicenseStatus.ps1 -UserPrincipalName User01@contoso.onmicrosoft.com
-  ~~~
-
-5. If you want to export as a CSV file, use CsvOutputPath option.
-
-  ~~~powershell
-.\Export-Office365LicenseStatus.ps1 -UserPrincipalName User01@contoso.onmicrosoft.com -CsvOutputPath C:\temp\exporttest.csv
-  ~~~
+Download Export-Microsoft365LicenseStatus from [Releases](https://github.com/microsoft/Export-Microsoft365LicenseStatus/releases) page.
 
 ## Prerequisites
 
-You have to install the Azure AD Module (MSOnline) on your computer. Please refer to [this](https://docs.microsoft.com/en-us/powershell/module/msonline/?view=azureadps-1.0) page for more information.
+- This script supports only PowerShell 7.
+- You have to install the Microsoft Graph PowerShell SDK on your computer. Please refer to [this](https://docs.microsoft.com/en-us/graph/powershell/installation) page for more information.
+- You need to have at least 'User.Read.All' and 'Organization.Read.All' permissions to use this script. If you want to use the delegated permissions to connect to Microsoft Graph, run the following command before running this script. You can also use the application permissions if you want.
+  
+  ```powershell
+  Connect-MgGraph -Scopes "Organization.Read.All","User.ReadWrite.All"
+  ```
 
+## Usage
 
-## Syntax
+1. Download Export-Microsoft365LicenseStatus and save on your computer.
+2. Start PowerShell and go to the folder where you saved the file.
+3. If you want to export all users' information, run the following command.
 
-```
-.\Export-LicenseStatus.ps1 -UserPrincipalName <String> [-CsvOutputPath <String>] [-ExportNoLicenseUser] [-Force] [<CommonParameters>]
-```
+   ```powershell
+   .\Export-Microsoft365LicenseStatus.ps1 -All
+   ```
 
-```
-.\Export-LicenseStatus.ps1 -All <Boolean> [-CsvOutputPath <String>] [-ExportNoLicenseUser] [-Force] [<CommonParameters>]
-```
+4. If you want to export all users' information to a CSV file, run the following command.
+
+   ```powershell
+   .\Export-Microsoft365LicenseStatus.ps1 -All | Export-Csv c:\Temp\LicenseReport.csv
+   ```
+
+5. If you want to export the specific user's information, run the following command.
+
+   ```powershell
+   .\Export-Microsoft365LicenseStatus.ps1 -UserPrincipalName user01@contoso.onmicrosoft.com
+   ```
+
+6. If you want to export the specific user's information to a CSV file, run the following command.
+
+   ```powershell
+   .\Export-Microsoft365LicenseStatus.ps1 -UserPrincipalName user01@contoso.onmicrosoft.com | Export-Csv c:\Temp\LicenseReport.csv
+   ```
 
 ## Feedback
 
